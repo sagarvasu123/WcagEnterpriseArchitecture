@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] -  Enterprise UI</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+            :root {
+                --bls-navy: #1a365d;
+                --focus-gold: #ffc107;
+            }
+
+            body {
+                background-color: #f8fafc;
+                font-family: 'Segoe UI', system-ui, sans-serif;
+            }
+
+            .navbar {
+                background-color: var(--bls-navy);
+            }
+
+            /* 508 Compliant Focus */
+            *:focus-visible {
+                outline: 3px solid var(--focus-gold) !important;
+                outline-offset: 2px !important;
+            }
+
+            /* Simulated WAVE Tool Badges */
+            .wave-badge {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.75rem;
+                font-weight: bold;
+                color: white;
+                border-radius: 3px;
+                padding: 2px 6px;
+                margin-right: 6px;
+                vertical-align: middle;
+                font-family: monospace;
+                box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            }
+
+            .wave-h {
+                background-color: #005A9C;
+                border-radius: 50%;
+                width: 24px;
+                height: 24px;
+                padding: 0;
+            }
+
+            .wave-error {
+                background-color: #D32F2F;
+                padding: 2px 4px;
+            }
+
+            .wave-feature {
+                background-color: #2E7D32;
+            }
+
+            .wave-aria {
+                background-color: #6A1B9A;
+            }
+            /* WCAG 2.1 AAA Compliant Tab Navigation */
+            .nav-tabs {
+                border-bottom: 2px solid #0f2e59;
+            }
+
+                .nav-tabs .nav-link {
+                    color: #0f2e59 !important; /* Exceeds 4.5:1 contrast requirement */
+                    font-weight: 600;
+                    border: 1px solid transparent;
+                    border-radius: 4px 4px 0 0;
+                    margin-right: 4px;
+                    background-color: transparent;
+                }
+
+                    .nav-tabs .nav-link:hover {
+                        color: #081d38 !important;
+                        border-color: #cbd5e1 #cbd5e1 #0f2e59;
+                        background-color: #e2e8f0;
+                    }
+
+                    .nav-tabs .nav-link.active {
+                        color: #ffffff !important;
+                        background-color: #0f2e59 !important; /* Solid dark background */
+                        border-color: #0f2e59 #0f2e59 transparent !important;
+                    }
+
+                    .nav-tabs .nav-link:focus-visible {
+                        outline: 3px solid #ffc107 !important;
+                        outline-offset: 2px !important;
+                    }
+            /* Inline Audit Flag Badges */
+            .audit-flag {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                font-size: 0.72rem;
+                font-weight: 700;
+                line-height: 1;
+                border-radius: 3px;
+                padding: 3px 6px;
+                margin-right: 6px;
+                vertical-align: middle;
+                letter-spacing: 0.02em;
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            }
+
+            /* Red Error Flag */
+            .flag-error {
+                background-color: #d32f2f;
+                color: #ffffff;
+                border: 1px solid #b71c1c;
+            }
+
+            /* Green Pass / Feature Flag */
+            .flag-pass {
+                background-color: #1b5e20;
+                color: #ffffff;
+                border: 1px solid #0d3810;
+            }
+
+            /* Purple ARIA Structure Flag */
+            .flag-aria {
+                background-color: #4a148c;
+                color: #ffffff;
+                border: 1px solid #310a5d;
+            }
+
+            .flag-icon {
+                font-size: 0.8rem;
+                font-weight: 900;
+            }
+            /* Heading Structure Badges */
+            .wave-h-badge {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                background-color: #0d6efd;
+                color: #ffffff;
+                font-weight: 700;
+                font-size: 0.75rem;
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+                vertical-align: middle;
+                margin-right: 6px;
+            }
+
+            /* Informational Rule Callout Box */
+            .audit-guide-card {
+                background-color: #ffffff;
+                border-left: 4px solid #0d6efd;
+                border-radius: 4px;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-dark shadow-sm mb-4">
+            <div class="container">
+                <a class="navbar-brand fw-bold d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                    <span class="material-icons-outlined me-2" aria-hidden="true">dashboard</span>
+                    Enterprise Accessibility Hub
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" id="main-content" class="container pb-5" tabindex="-1">
+        @RenderBody()
+    </main>
+
+    <!-- Core Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Required by Razor to render view-specific scripts like tab activation -->
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

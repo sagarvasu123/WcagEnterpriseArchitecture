@@ -1,0 +1,307 @@
+﻿@model IEnumerable<WcagEnterprise.Business.Models.WcagRuleDto>
+@{
+    ViewData["Title"] = "Accessibility Showcase";
+}
+
+<div class="mb-4 border-bottom pb-3 d-flex align-items-center">
+    <span class="wave-badge wave-h" aria-hidden="true" title="Heading Level 1">h1</span>
+    <h1 class="display-6 fw-bold text-dark mb-0 d-inline-block">Enterprise UI/UX Standards</h1>
+</div>
+
+<!-- Bootstrap Tabs Navigation -->
+<ul class="nav nav-tabs mb-4" id="wcagTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active fw-bold" id="forms-tab" data-bs-toggle="tab" data-bs-target="#forms-pane" type="button" role="tab" aria-selected="true">
+            Forms & Contrast
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link fw-bold" id="images-tab" data-bs-toggle="tab" data-bs-target="#images-pane" type="button" role="tab" aria-selected="false">
+            Images & Media
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link fw-bold" id="links-tab" data-bs-toggle="tab" data-bs-target="#links-pane" type="button" role="tab" aria-selected="false">
+            Links & Navigation
+        </button>
+    </li>
+</ul>
+
+<!-- Tab Contents -->
+<div class="tab-content" id="wcagTabsContent">
+
+    <!-- TAB 1: FORMS & CONTRAST -->
+    <div class="tab-pane fade show active p-3" id="forms-pane" role="tabpanel" aria-labelledby="forms-tab" tabindex="0">
+        <div class="row g-5 mb-5">
+
+            <!-- NON-COMPLIANT SIDE -->
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100 bg-white">
+                    <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
+                        <span class="audit-flag flag-error"><span class="flag-icon">✕</span> FAILS 508 / WCAG</span>
+                        <h2 class="h5 text-danger d-inline-block mb-0 align-middle">Non-Compliant Implementation</h2>
+                        <hr />
+                    </div>
+                    <div class="card-body px-4">
+                        <!-- Contrast Error -->
+                        <div class="mb-3">
+                            <span class="audit-flag flag-error"><span class="flag-icon">✕</span> Low Contrast (2.1:1)</span>
+                            <span style="color: #999; font-size: 13px;">Error: Fails the 4.5:1 minimum threshold.</span>
+                        </div>
+
+                        <!-- Missing Form Label Error -->
+                        <div class="mb-4 mt-3">
+                            <div class="mb-1">
+                                <span class="audit-flag flag-error"><span class="flag-icon">✕</span> Missing Form Label</span>
+                                <span class="text-secondary small fw-bold">Search Employee ID</span>
+                            </div>
+                            <!-- Div acting as text with an unlinked input -->
+                            <input type="text" style="width: 100%; border: 1px solid #e2e8f0; padding: 8px;" placeholder="Enter ID...">
+                        </div>
+
+                        <!-- Keyboard & Event Handler Error -->
+                        <div class="mt-4">
+                            <div class="mb-1">
+                                <span class="audit-flag flag-error"><span class="flag-icon">✕</span> Non-Keyboard Element (div)</span>
+                                <span class="audit-flag flag-error">tabindex="-1"</span>
+                            </div>
+                            <div style="background-color: #e2e8f0; color: #fff; padding: 10px 20px; display: inline-block; cursor: pointer;"
+                                 onclick="alert('No keyboard support!')"
+                                 tabindex="-1">
+                                Execute Search
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPLIANT SIDE -->
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100 bg-white">
+                    <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
+                        <span class="audit-flag flag-pass"><span class="flag-icon">✓</span> PASSES WCAG 2.1 AA</span>
+                        <h2 class="h5 text-success d-inline-block mb-0 align-middle">Compliant Implementation</h2>
+                        <hr />
+                    </div>
+                    <div class="card-body px-4">
+                        <!-- Contrast Pass -->
+                        <div class="mb-3">
+                            <span class="audit-flag flag-pass"><span class="flag-icon">✓</span> High Contrast (11.2:1)</span>
+                            <span class="text-dark small">Exceeds the 4.5:1 ratio requirement.</span>
+                        </div>
+
+                        <!-- Explicit Form Label Pass -->
+                        <div class="mb-4 mt-3">
+                            <div class="mb-1">
+                                <span class="audit-flag flag-pass"><span class="flag-icon">✓</span> Explicit Label [for="emp-search"]</span>
+                                <span class="audit-flag flag-aria">aria-required="true"</span>
+                            </div>
+                            <label for="emp-search" class="form-label fw-bold text-dark d-block">Search Employee ID</label>
+                            <input type="text" id="emp-search" class="form-control border-secondary" aria-required="true">
+                        </div>
+
+                        <!-- Keyboard & Native Button Pass -->
+                        <div class="mt-4">
+                            <div class="mb-1">
+                                <span class="audit-flag flag-pass"><span class="flag-icon">✓</span> Native Button Element</span>
+                                <span class="audit-flag flag-aria">aria-label="Execute Employee Search"</span>
+                            </div>
+                            <button type="button" class="btn btn-primary px-4 py-2" aria-label="Execute Employee Search">
+                                Execute Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TAB 2: IMAGES & MEDIA -->
+    <div class="tab-pane fade p-3" id="images-pane" role="tabpanel" aria-labelledby="images-tab" tabindex="0">
+        <div class="row g-5 mb-5">
+
+            <!-- NON-COMPLIANT: Missing Alt Text -->
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100 bg-white">
+                    <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
+                        <span class="audit-flag flag-error"><span class="flag-icon">✕</span> FAILS 508 / WCAG</span>
+                        <h2 class="h5 text-danger d-inline-block mb-0 align-middle">Missing Alt Text</h2>
+                        <hr />
+                    </div>
+                    <div class="card-body px-4">
+                        <div class="mb-2">
+                            <span class="audit-flag flag-error"><span class="flag-icon">✕</span> Missing alt Attribute</span>
+                        </div>
+
+                        <!-- Instant-load inline SVG with NO alt attribute to demonstrate failure -->
+                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22150%22%20viewBox%3D%220%200%20400%20150%22%3E%3Crect%20fill%3D%22%23e2e8f0%22%20width%3D%22400%22%20height%3D%22150%22%2F%3E%3Ctext%20fill%3D%22%2364748b%22%20font-family%3D%22sans-serif%22%20font-size%3D%2218%22%20font-weight%3D%22bold%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ESystem%20Architecture%20Diagram%3C%2Ftext%3E%3C%2Fsvg%3E"
+                             style="max-width:100%; border: 2px solid #d32f2f; border-radius: 4px;" />
+
+                        <p class="mt-3 text-secondary small">
+                            Screen readers encounter an image with no <code>alt</code> tag and typically read out the raw filename or source URI, failing WCAG 1.1.1 (Non-text Content).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPLIANT: Meaningful Alt Text -->
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100 bg-white">
+                    <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
+                        <span class="audit-flag flag-pass"><span class="flag-icon">✓</span> PASSES WCAG 2.1 AA</span>
+                        <h2 class="h5 text-success d-inline-block mb-0 align-middle">Descriptive Alt Text</h2>
+                        <hr />
+                    </div>
+                    <div class="card-body px-4">
+                        <div class="mb-2">
+                            <span class="audit-flag flag-pass"><span class="flag-icon">✓</span> Descriptive alt Attribute</span>
+                            <span class="audit-flag flag-aria">alt="Architectural flowchart..."</span>
+                        </div>
+
+                        <!-- Instant-load inline SVG with full semantic alt text -->
+                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22150%22%20viewBox%3D%220%200%20400%20150%22%3E%3Crect%20fill%3D%22%23e2e8f0%22%20width%3D%22400%22%20height%3D%22150%22%2F%3E%3Ctext%20fill%3D%22%2364748b%22%20font-family%3D%22sans-serif%22%20font-size%3D%2218%22%20font-weight%3D%22bold%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ESystem%20Architecture%20Diagram%3C%2Ftext%3E%3C%2Fsvg%3E"
+                             alt="Architectural flowchart showing UI consuming Business Layer via DI and REST calls to In-Memory API."
+                             style="max-width:100%; border: 2px solid #2e7d32; border-radius: 4px;" />
+
+                        <p class="mt-3 text-secondary small">
+                            Screen readers announce the visual content and intent immediately, satisfying WCAG 1.1.1 Level AA requirements.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TAB 3: LINKS & NAVIGATION -->
+    <div class="tab-pane fade" id="links-pane" role="tabpanel" tabindex="0">
+        <div class="row g-5 mb-5">
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100 bg-white">
+                    <div class="card-body px-4 pt-4">
+                        <h2 class="h5 text-danger">Ambiguous Link Text</h2>
+                        <hr />
+                        <p class="text-dark">To download the Q3 Employment Data report, <span class="wave-badge wave-error" aria-hidden="true" title="Suspicious Link Text">x</span><a href="#">click here</a>.</p>
+                        <p class="mt-3 text-muted small">When a screen reader lists links on a page, the user will only hear "click here," with no context of where the link goes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100 bg-white">
+                    <div class="card-body px-4 pt-4">
+                        <h2 class="h5 text-success">Contextual Link Text</h2>
+                        <hr />
+                        <p class="text-dark">You can securely <span class="wave-badge wave-feature" aria-hidden="true" title="Descriptive Link">🔗</span><a href="#">download the Q3 Employment Data report (PDF)</a>.</p>
+                        <p class="mt-3 text-muted small">Link text describes exactly what will happen and what file type will open, fulfilling WCAG 2.4.4 (Link Purpose).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- API DATA DRIVEN VIA BUSINESS LAYER -->
+<div class="card border-0 shadow-sm bg-white mt-2">
+    <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
+        <span class="wave-badge wave-h" aria-hidden="true">h2</span>
+        <h2 class="h5 text-dark d-inline-block mb-0">Accessibility Rules Loaded via API & Business Layer</h2>
+        <hr />
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <!-- Simulated WAVE Table Structure Indicator -->
+            <span class="wave-badge wave-feature ms-4 mt-2" aria-hidden="true">table</span>
+            <table class="table table-hover align-middle mb-0 mt-2" aria-label="WCAG System Rules">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col" class="px-4"><span class="wave-badge wave-feature" aria-hidden="true">th</span>Principle</th>
+                        <th scope="col">Guideline</th>
+                        <th scope="col">Description</th>
+                        <th scope="col" class="px-4">Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var rule in Model)
+                    {
+                        <tr>
+                            <td class="px-4 fw-bold text-dark">@rule.Principle</td>
+                            <td>@rule.Guideline</td>
+                            <td class="text-secondary">@rule.Description</td>
+                            <td class="px-4"><span class="badge bg-dark rounded-pill">@rule.ComplianceLevel</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- HEADING HIERARCHY / STRUCTURAL NAVIGATION EXPLANATION -->
+<section class="card audit-guide-card border-0 p-4 mt-4" aria-labelledby="heading-guide-title">
+    <div class="d-flex align-items-center mb-2">
+        <span class="wave-h-badge" aria-hidden="true">h2</span>
+        <h2 id="heading-guide-title" class="h5 text-dark fw-bold mb-0">
+            Heading Hierarchy & Screen Reader Outline (WCAG 1.3.1 / 2.4.6)
+        </h2>
+    </div>
+    <hr class="my-2" />
+    <div class="row g-4 mt-1">
+        <div class="col-lg-7">
+            <p class="text-secondary mb-2">
+                Assistive technologies like JAWS and NVDA rely on heading levels (<kbd class="bg-light text-dark border">&lt;h1&gt;</kbd> through <kbd class="bg-light text-dark border">&lt;h6&gt;</kbd>) to build an in-page navigation tree. Users press the <kbd>H</kbd> key or open a Heading List dialog to jump directly to sections.
+            </p>
+            <ul class="text-secondary small mb-0 ps-3">
+                <li class="mb-1">
+                    <strong>Logical Sequence:</strong> Headings must follow a logical nesting order without skipped levels (for example, <kbd>&lt;h1&gt;</kbd> must be followed by <kbd>&lt;h2&gt;</kbd>, and sub-sections under that must use <kbd>&lt;h3&gt;</kbd> before any <kbd>&lt;h4&gt;</kbd>).
+                </li>
+                <li class="mb-1">
+                    <strong>No Skips:</strong> Jumping directly from an <kbd>&lt;h1&gt;</kbd> to an <kbd>&lt;h3&gt;</kbd> creates a <em>Skipped Heading Level</em> alert in automated scanners (WAVE/ANDI) and misleads non-sighted users into assuming they bypassed an entire parent category.
+                </li>
+                <li>
+                    <strong>Single Root Concept:</strong> Every accessible application layout provides exactly one main descriptive <kbd>&lt;h1&gt;</kbd> at the top of the primary content area, with secondary module titles structured consistently as <kbd>&lt;h2&gt;</kbd>.
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-5">
+            <div class="bg-light border rounded p-3">
+                <span class="text-uppercase small fw-bold text-muted d-block mb-2">Active Page Document Outline:</span>
+                <ol class="list-unstyled font-monospace small mb-0">
+                    <li class="mb-2">
+                        <span class="wave-h-badge" style="width:22px; height:22px; font-size:0.7rem;">h1</span>
+                        <strong class="text-dark">Enterprise Accessibility Standards</strong>
+                        <ol class="list-unstyled ps-4 mt-2">
+                            <li class="mb-2">
+                                <span class="wave-h-badge" style="width:22px; height:22px; font-size:0.7rem;">h2</span>
+                                <span class="text-muted">Interactive Evaluation Panels</span>
+                            </li>
+                            <li class="mb-2">
+                                <span class="wave-h-badge" style="width:22px; height:22px; font-size:0.7rem;">h2</span>
+                                <span class="text-muted">Accessibility Rules (Business Layer &amp; API)</span>
+                            </li>
+                            <li>
+                                <span class="wave-h-badge" style="width:22px; height:22px; font-size:0.7rem;">h2</span>
+                                <span class="text-muted">Heading Hierarchy &amp; Screen Reader Outline</span>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <!-- Initialize Bootstrap Tabs (Required for Bootstrap 5) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var triggerTabList = [].slice.call(document.querySelectorAll('#wcagTabs button'))
+            triggerTabList.forEach(function(triggerEl) {
+                var tabTrigger = new bootstrap.Tab(triggerEl)
+                triggerEl.addEventListener('click', function(event) {
+                    event.preventDefault()
+                    tabTrigger.show()
+                })
+            })
+        });
+    </script>
+}

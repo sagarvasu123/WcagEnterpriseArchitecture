@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="WcagEnterprise.Api/WcagEnterprise.Api.csproj" />
+  <Project Path="WcagEnterprise.Business/WcagEnterprise.Business.csproj" />
+  <Project Path="WcagEnterprise.UI/WcagEnterprise.UI.csproj" />
+</Solution>
